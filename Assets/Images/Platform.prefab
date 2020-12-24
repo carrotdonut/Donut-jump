@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4553792149775491538}
   - component: {fileID: 4299180871348932706}
-  - component: {fileID: 4846856635724168502}
   - component: {fileID: 1495387101}
   m_Layer: 0
   m_Name: Platform
@@ -28,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 58239488632699572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3, z: 0}
-  m_LocalScale: {x: 8.097174, y: 0.62429184, z: 1}
+  m_LocalScale: {x: 1.37, y: 0.27, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,19 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4846856635724168502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58239488632699572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f36afb3ac64094ca8aa2de8b6a547a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!65 &1495387101
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105,8 +91,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58239488632699572}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.0000002, z: 0}
-  m_Center: {x: 0, y: -0.00000011920929, z: 0.099999994}
+  m_Size: {x: 1, y: 0.1, z: 0}
+  m_Center: {x: 0, y: 0.45, z: 0.099999994}

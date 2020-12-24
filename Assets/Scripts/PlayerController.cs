@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private CameraController mainCamera;
-    [SerializeField] private float movementSpeed = 5f;
-    [SerializeField] private float gravity = 9.8f;
-    [SerializeField] private float jumpStrength = 10f;
+    [SerializeField] private float movementSpeed = 60f;
+    [SerializeField] private float gravity = 1000f;
+    [SerializeField] private float jumpStrength = 13f;
     private Vector3 displacement = Vector3.zero;
-
     private bool movingDown = true;
-
-    private float previousPlatformY = -3; // Y coordinate of the starting platform
+    private float previousPlatformY = -4; // Y coordinate of the starting platform
 
     // Start is called before the first frame update
     void Start() {

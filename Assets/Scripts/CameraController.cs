@@ -8,8 +8,6 @@ public class CameraController : MonoBehaviour {
     private float moveDuration = 0.5f;
     private float timeElapsed = 0.5f;
 
-    [SerializeField] private float cameraSpeed = 5.0f;
-
     // Start is called before the first frame update
     void Start() {
     }
