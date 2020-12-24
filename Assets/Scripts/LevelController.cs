@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour {
-    [SerializeField] protected GameObject platformPrefab;
-    [SerializeField] protected PlayerController player;
+    [SerializeField] private GameObject platformPrefab;
+    [SerializeField] private GameObject standingGoosePrefab;
+    [SerializeField] private PlayerController player;
     protected float previousPlatformY;
     private float[] levelDistances = {20, 300, 500};
     private int level = 1;
@@ -36,7 +37,7 @@ public class LevelController : MonoBehaviour {
 
             switch(level) {
             case 2:
-                currentLevel = new Level2(platformPrefab, player, currentLevel.getPreviousPlatformY());
+                currentLevel = new Level2(platformPrefab, standingGoosePrefab, player, currentLevel.getPreviousPlatformY());
                 break;
             }
         }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Level1: Level {
    public Level1(GameObject platformPrefab, PlayerController player, float previousPlatformY): base(platformPrefab, player, previousPlatformY) {
-       minDistanceBetweenPlatform = 2.5f;
-       maxDistanceBetweenPlatform = 4f;
+       minDistanceBetweenPlatform = 1.2f;
+       maxDistanceBetweenPlatform = 3f;
        Debug.Log("Level1");
    }
 
