@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Level1: Level {
-   public Level1(GameObject platformPrefab, PlayerController player, float previousSpawnedPlatformY): 
-   base(platformPrefab, player, previousSpawnedPlatformY) {
+   public Level1(PlayerController player, float previousSpawnedPlatformY): 
+   base(player, previousSpawnedPlatformY) {
        minDistanceBetweenPlatform = 1.2f;
        maxDistanceBetweenPlatform = 3f;
        Debug.Log("Level 1");
@@ -15,7 +15,8 @@ public class Level1: Level {
         // We only spawn platforms up to a certain Y distance above the player
         
         if (base.ShouldUpdateLevel()) {
-            SpawnPlatform(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY);
+            GameObject prefab = GameManager.Instance.prefabDataBase.platformPrefab;
+            SpawnPlatform(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, prefab);
         }
     }
 }

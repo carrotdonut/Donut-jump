@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour {
     public float[] levelDistances = {20, 300, 500};
-    [SerializeField] private GameObject platformPrefab;
-    [SerializeField] private GameObject standingGoosePrefab;
     
     protected float previousSpawnedPlatformY;
     private int level = 1;
@@ -15,11 +13,11 @@ public class LevelController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        this.player = GameManager.gameController.player;
+        this.player = GameManager.Instance.gameController.player;
         previousSpawnedPlatformY = this.player.transform.position.y - 2;
         
         // Initialize the level to level 1
-        currentLevel = new Level1(platformPrefab, player, previousSpawnedPlatformY);
+        currentLevel = new Level1(player, previousSpawnedPlatformY);
     }
 
     // Update is called once per frame
@@ -33,7 +31,7 @@ public class LevelController : MonoBehaviour {
 
             switch(level) {
                 case 2:
-                    currentLevel = new Level2(platformPrefab, standingGoosePrefab, player, currentLevel.GetPreviousSpawnedPlatformY());
+                    currentLevel = new Level2(player, currentLevel.GetPreviousSpawnedPlatformY());
                     break;
                 }
         }

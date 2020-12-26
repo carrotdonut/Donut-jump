@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameController gameController;
+    public GameController gameController {get; set;}
     // public static MusicController musicController;
     // public static DataController dataController;
-    // public static PrefabDatabase prefabDataBase;
-
-    void Awake() {
-        DontDestroyOnLoad(this.gameObject);
-    }
+    public PrefabDatabase prefabDataBase;
 }

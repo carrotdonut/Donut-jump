@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
 
     // Same as Start, except it is called before Start()
     void Awake() {
-        GameManager.gameController = this;
+        GameManager.Instance.gameController = this;
     }
 
     void Start() {

@@ -37,7 +37,13 @@ public class PlayerController : MonoBehaviour {
             // When we land on a platform, we want to jump upwards
             displacement.y = jumpStrength;
 
-            GameManager.gameController.UpdateCameraPosition(other.transform.position.y);
+            GameManager.Instance.gameController.UpdateCameraPosition(other.transform.position.y);
+        } else if (other.tag == "Goose" && movingDown) {
+            // You kill the goose when you jump on top of it
+            Destroy(other.gameObject);
+        } else if (other.tag == "Goose" && !movingDown) {
+            // You die if you hit a goose and you're jumping up
+            Debug.Log("You ded");
         }
     }
 }
