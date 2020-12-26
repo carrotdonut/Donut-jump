@@ -9,14 +9,13 @@ public class Level1: Level {
        Debug.Log("Level1");
    }
 
-    public override void spawn() {
+    public override void UpdateLevel() {
         // Every time the player jumps on a platform and moves upwards, we spawn new platforms
         // We only spawn platforms up to a certain Y distance above the player
         
-        if (previousPlatformY < (player.transform.position.y + maxDistanceAbovePlayer)) {
+        if (base.ShouldSpawnSomething()) {
             GameObject platform = spawnPlatform(minDistanceBetweenPlatform + previousPlatformY, maxDistanceBetweenPlatform + previousPlatformY);
-
             previousPlatformY = platform.transform.position.y;
-        } 
+        }
     }
 }

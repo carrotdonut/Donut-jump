@@ -40,7 +40,7 @@ public abstract class Level {
     Abstract function for each level to implement, to spawn platforms, monsters, etc
     Each level has logic for how far apart platforms are, how often to spawn monsters, etc
     */
-   public abstract void spawn();
+   public abstract void UpdateLevel();
 
     // add collider, and when the collider triggers, check if its a platform
     // collider.transform.gameobject - to get a reference to that game object
@@ -73,5 +73,9 @@ public abstract class Level {
 
     public GameObject spawnZigzagGoose(float y) {
         return new GameObject();
+    }
+
+    protected bool ShouldSpawnSomething() {
+        return previousPlatformY < (player.transform.position.y + maxDistanceAbovePlayer);
     }
 }

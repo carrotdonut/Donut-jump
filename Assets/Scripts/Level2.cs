@@ -10,20 +10,20 @@ public class Level2: Level {
        Debug.Log("Level2");
    }
 
-    public override void spawn() {
+    public override void UpdateLevel() {
         // Every time the player jumps on a platform and moves upwards, we spawn new platforms
         // We only spawn platforms up to a certain Y distance above the player
 
         Items item = Items.NONE;
         
-        if (previousPlatformY < (player.transform.position.y + maxDistanceAbovePlayer)) {
+        if (base.ShouldSpawnSomething()) {
             // For the first platform spawned in level 2, we want to spawn a goose on top
             if (!firstGooseSpawned) {
                 item = Items.STANDING_GOOSE;
                 firstGooseSpawned = true;
             }
-            GameObject platform = spawnPlatform(minDistanceBetweenPlatform + previousPlatformY, maxDistanceBetweenPlatform + previousPlatformY, item);
 
+            GameObject platform = spawnPlatform(minDistanceBetweenPlatform + previousPlatformY, maxDistanceBetweenPlatform + previousPlatformY, item);
             previousPlatformY = platform.transform.position.y;
         } 
     }

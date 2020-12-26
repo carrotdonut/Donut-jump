@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour {
+    public float[] levelDistances = {20, 300, 500};
     [SerializeField] private GameObject platformPrefab;
     [SerializeField] private GameObject standingGoosePrefab;
-    [SerializeField] private PlayerController player;
+    
     protected float previousPlatformY;
-    private float[] levelDistances = {20, 300, 500};
     private int level = 1;
 
     private Level currentLevel;
+    private PlayerController player;
 
     // Start is called before the first frame update
     void Start() {
+        this.player = GameManager.gameController.player;
         // Spawn the starting platform underneath the player
+        // Maybe just do this in scene view instead?
         Vector3 spawnPosition = player.transform.position + new Vector3(0, -2, 0);
         Quaternion spawnRotation = Quaternion.identity; // Rotation (0,0,0)
 
@@ -29,7 +32,7 @@ public class LevelController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         // Spawn platforms/monsters for the current level
-        currentLevel.spawn();
+        currentLevel.UpdateLevel();
 
         // Update the level based on the player's height
         if (player.transform.position.y >= levelDistances[level - 1]) {

@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
         float horizontalMovement = Input.GetAxis("Horizontal");
         displacement.x = horizontalMovement * movementSpeed;
 
-        transform.position = transform.position + displacement * Time.deltaTime;
+        transform.position += displacement * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour {
 
             if (previousPlatformY != other.transform.position.y) {
                 float displacementY = other.transform.position.y - previousPlatformY;
-                mainCamera.updateCameraYDisplacement(displacementY);
+                GameManager.gameController.UpdateCameraYDisplacement(displacementY);
                 previousPlatformY = other.transform.position.y;
             }
         }
