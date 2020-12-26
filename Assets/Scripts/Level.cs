@@ -15,7 +15,8 @@ public abstract class Level {
         NONE = 0,
         STANDING_GOOSE = 1,
         FLYING_GOOSE = 2,
-        SPRING = 3
+        ZIGZAG_GOOSE = 3,
+        SPRING = 4
     }
 
    public Level(GameObject platformPrefab, PlayerController player, float previousPlatformY) {
@@ -41,6 +42,8 @@ public abstract class Level {
     */
    public abstract void spawn();
 
+    // add collider, and when the collider triggers, check if its a platform
+    // collider.transform.gameobject - to get a reference to that game object
     public GameObject spawnPlatform(float minPlatformY, float maxPlatformY, Items item = Items.NONE) {
         float newPlatformY = Random.Range(minPlatformY, maxPlatformY);
         float newPlatformX = Random.Range(-2.5f, 2.5f);
@@ -64,11 +67,11 @@ public abstract class Level {
         GameObject.Instantiate<GameObject>(standingGoosePrefab, spawnPosition, spawnRotation);
     }
 
-    public GameObject spawnMonsterMovingHorizontal(float y) {
+    public GameObject spawnHorizontalFlyingGoose(float y) {
         return new GameObject();
     }
 
-    public GameObject spawnMonsterMovingZigZag(float y) {
+    public GameObject spawnZigzagGoose(float y) {
         return new GameObject();
     }
 }
