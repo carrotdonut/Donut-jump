@@ -7,7 +7,7 @@ public class LevelController : MonoBehaviour {
     [SerializeField] private GameObject platformPrefab;
     [SerializeField] private GameObject standingGoosePrefab;
     
-    protected float previousPlatformY;
+    protected float previousSpawnedPlatformY;
     private int level = 1;
 
     private Level currentLevel;
@@ -16,17 +16,10 @@ public class LevelController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         this.player = GameManager.gameController.player;
-        // Spawn the starting platform underneath the player
-        // Maybe just do this in scene view instead?
-        Vector3 spawnPosition = player.transform.position + new Vector3(0, -2, 0);
-        Quaternion spawnRotation = Quaternion.identity; // Rotation (0,0,0)
-
-        previousPlatformY = player.transform.position.y - 2;
+        previousSpawnedPlatformY = this.player.transform.position.y - 2;
         
-        Instantiate<GameObject>(platformPrefab, spawnPosition, spawnRotation);
-
         // Initialize the level to level 1
-        currentLevel = new Level1(platformPrefab, player, previousPlatformY);
+        currentLevel = new Level1(platformPrefab, player, previousSpawnedPlatformY);
     }
 
     // Update is called once per frame
@@ -39,10 +32,10 @@ public class LevelController : MonoBehaviour {
             level++;
 
             switch(level) {
-            case 2:
-                currentLevel = new Level2(platformPrefab, standingGoosePrefab, player, currentLevel.getPreviousPlatformY());
-                break;
-            }
+                case 2:
+                    currentLevel = new Level2(platformPrefab, standingGoosePrefab, player, currentLevel.GetPreviousSpawnedPlatformY());
+                    break;
+                }
         }
     }
 }

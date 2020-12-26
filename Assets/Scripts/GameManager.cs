@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
     // public static DataController dataController;
     // public static PrefabDatabase prefabDataBase;
 
-    void Awake()
-    {
+    void Awake() {
         DontDestroyOnLoad(this.gameObject);
     }
 }

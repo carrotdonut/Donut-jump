@@ -7,23 +7,31 @@ public class CameraController : MonoBehaviour {
     private Vector3 endCameraPosition;
     private float moveDuration = 0.5f;
     private float timeElapsed = 0.5f;
-
     private bool isMovingCamera = false;
+    private float previousJumpedPlatformY = -4; // Y coordinate of the starting platform
 
     // Start is called before the first frame update
     void Start() {
     }
 
-    public void updateCameraYDisplacement(float displacement) {
+    public void UpdateCameraPosition(float currentPlatformY) {
+        // We don't need to update the camera if we jump on the same platform as before
+        if (currentPlatformY == previousJumpedPlatformY) return;
+
+        float displacement = currentPlatformY - previousJumpedPlatformY;
+        previousJumpedPlatformY = currentPlatformY;
+
         if (!isMovingCamera) {
             InitializeVariables(displacement);
-            StartCoroutine(UpdateCameraYDisplacementCor(displacement));
+            StartCoroutine(UpdateCameraPositionCor());
         } else {
+            // If the camera's already moving, we just want to update the start and end camera position to continue
+            // in the same coroutine
             InitializeVariables(displacement);
         }
     }
 
-    private IEnumerator UpdateCameraYDisplacementCor(float displacement) {
+    private IEnumerator UpdateCameraPositionCor() {
         isMovingCamera = true;
 
         while (timeElapsed < moveDuration) {
@@ -38,7 +46,6 @@ public class CameraController : MonoBehaviour {
 
     private void InitializeVariables(float displacement) {
         startCameraPosition = transform.position;
-
         endCameraPosition = new Vector3(transform.position.x, transform.position.y + displacement, transform.position.z);
         timeElapsed = 0;
     }

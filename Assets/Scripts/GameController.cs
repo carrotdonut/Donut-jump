@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Per scene
-public class GameController : MonoBehaviour
-{
+public class GameController : MonoBehaviour {
     public CameraController mainCamera;
     public PlayerController player;
 
@@ -12,15 +11,12 @@ public class GameController : MonoBehaviour
     void Awake() {
         GameManager.gameController = this;
     }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    void Start() {
     }
 
-    public void UpdateCameraYDisplacement(float displacementY) {
-        mainCamera.updateCameraYDisplacement(displacementY);
+    public void UpdateCameraPosition(float currentPlatformY) {
+        mainCamera.UpdateCameraPosition(currentPlatformY);
     }
 
 }

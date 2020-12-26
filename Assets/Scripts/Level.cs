@@ -6,9 +6,9 @@ public abstract class Level {
     protected GameObject platformPrefab;
     protected GameObject standingGoosePrefab;
     protected PlayerController player;
-    protected float previousPlatformY;
     protected float minDistanceBetweenPlatform;
     protected float maxDistanceBetweenPlatform;
+    protected float previousSpawnedPlatformY;
 
     protected const float maxDistanceAbovePlayer = 6;
     public enum Items : sbyte {
@@ -19,21 +19,17 @@ public abstract class Level {
         SPRING = 4
     }
 
-   public Level(GameObject platformPrefab, PlayerController player, float previousPlatformY) {
+   public Level(GameObject platformPrefab, PlayerController player, float previousSpawnedPlatformY) {
        this.platformPrefab = platformPrefab;
        this.player = player;
-       this.previousPlatformY = previousPlatformY;
+       this.previousSpawnedPlatformY = previousSpawnedPlatformY;
    }
 
-   public Level(GameObject platformPrefab, GameObject standingGoosePrefab, PlayerController player, float previousPlatformY) {
+   public Level(GameObject platformPrefab, GameObject standingGoosePrefab, PlayerController player, float previousSpawnedPlatformY) {
        this.platformPrefab = platformPrefab;
        this.standingGoosePrefab = standingGoosePrefab;
        this.player = player;
-       this.previousPlatformY = previousPlatformY;
-   }
-
-   public float getPreviousPlatformY() {
-       return previousPlatformY;
+       this.previousSpawnedPlatformY = previousSpawnedPlatformY;
    }
 
     /*
@@ -42,9 +38,13 @@ public abstract class Level {
     */
    public abstract void UpdateLevel();
 
+   public float GetPreviousSpawnedPlatformY() {
+       return previousSpawnedPlatformY;
+   }
+
     // add collider, and when the collider triggers, check if its a platform
     // collider.transform.gameobject - to get a reference to that game object
-    public GameObject spawnPlatform(float minPlatformY, float maxPlatformY, Items item = Items.NONE) {
+    public void SpawnPlatform(float minPlatformY, float maxPlatformY, Items item = Items.NONE) {
         float newPlatformY = Random.Range(minPlatformY, maxPlatformY);
         float newPlatformX = Random.Range(-2.5f, 2.5f);
 
@@ -53,29 +53,30 @@ public abstract class Level {
 
         switch(item) {
             case Items.STANDING_GOOSE:
-                spawnStandingGoose(newPlatformX, newPlatformY + 1);
+                SpawnStandingGoose(newPlatformX, newPlatformY + 1);
                 break;
         }
 
-        return GameObject.Instantiate<GameObject>(platformPrefab, spawnPosition, spawnRotation);
+        GameObject.Instantiate<GameObject>(platformPrefab, spawnPosition, spawnRotation);
+        previousSpawnedPlatformY = newPlatformY;
     }
 
-    public void spawnStandingGoose(float x, float y) {
+    public void SpawnStandingGoose(float x, float y) {
         Debug.Log("SPAWN THE STANDING GOOSE");
         Vector3 spawnPosition = new Vector3(x, y, 0);
         Quaternion spawnRotation = Quaternion.identity; // Rotation (0,0,0)
         GameObject.Instantiate<GameObject>(standingGoosePrefab, spawnPosition, spawnRotation);
     }
 
-    public GameObject spawnHorizontalFlyingGoose(float y) {
+    public GameObject SpawnHorizontalFlyingGoose(float y) {
         return new GameObject();
     }
 
-    public GameObject spawnZigzagGoose(float y) {
+    public GameObject SpawnZigzagGoose(float y) {
         return new GameObject();
     }
 
-    protected bool ShouldSpawnSomething() {
-        return previousPlatformY < (player.transform.position.y + maxDistanceAbovePlayer);
+    protected bool ShouldUpdateLevel() {
+        return previousSpawnedPlatformY < (player.transform.position.y + maxDistanceAbovePlayer);
     }
 }

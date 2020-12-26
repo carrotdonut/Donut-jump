@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Level2: Level {
     private bool firstGooseSpawned = false;
-   public Level2(GameObject platformPrefab, GameObject standingGoosePrefab, PlayerController player, float previousPlatformY): base(platformPrefab, standingGoosePrefab, player, previousPlatformY) {
+   public Level2(GameObject platformPrefab, GameObject standingGoosePrefab, PlayerController player, float previousSpawnedPlatformY): 
+   base(platformPrefab, standingGoosePrefab, player, previousSpawnedPlatformY) {
        minDistanceBetweenPlatform = 2f;
        maxDistanceBetweenPlatform = 4.5f;
-       Debug.Log("Level2");
+       Debug.Log("Level 2");
    }
 
     public override void UpdateLevel() {
@@ -16,15 +17,14 @@ public class Level2: Level {
 
         Items item = Items.NONE;
         
-        if (base.ShouldSpawnSomething()) {
+        if (base.ShouldUpdateLevel()) {
             // For the first platform spawned in level 2, we want to spawn a goose on top
             if (!firstGooseSpawned) {
                 item = Items.STANDING_GOOSE;
                 firstGooseSpawned = true;
             }
 
-            GameObject platform = spawnPlatform(minDistanceBetweenPlatform + previousPlatformY, maxDistanceBetweenPlatform + previousPlatformY, item);
-            previousPlatformY = platform.transform.position.y;
+            SpawnPlatform(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, item);
         } 
     }
 }
