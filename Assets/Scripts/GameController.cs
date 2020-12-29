@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
     public CameraController mainCamera;
     public PlayerController player;
+    public SprinkleController sprinkles;
 
     // Same as Start, except it is called before Start()
     void Awake() {
@@ -15,8 +16,24 @@ public class GameController : MonoBehaviour {
     void Start() {
     }
 
-    public void UpdateCameraPosition(float currentPlatformY) {
-        mainCamera.UpdateCameraPosition(currentPlatformY);
+    public void UpdateCameraPositionSmooth(float currentPlatformY) {
+        mainCamera.UpdateCameraPositionSmooth(currentPlatformY);
+    }
+
+    public void SetCameraPositionY(float y) {
+        mainCamera.SetCameraPositionY(y);
+    }
+
+    public Vector3 GetPlayerPosition() {
+        return player.transform.position;
+    }
+
+    public void ChangePlayerToDeadDonut() {
+        player.ChangeToDeadDonut();
+    }
+
+    public void ShootSprinkle() {
+        sprinkles.CreateSprinkle();
     }
 
 }

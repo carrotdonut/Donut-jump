@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 963194229}
   player: {fileID: 205299587}
+  sprinkles: {fileID: 1721573061}
 --- !u!4 &102726928
 Transform:
   m_ObjectHideFlags: 0
@@ -285,6 +286,7 @@ MonoBehaviour:
   movementSpeed: 5
   gravity: 9.8
   jumpStrength: 10
+  deadDonutSprite: {fileID: 21300000, guid: 6f435030d4bea0a46ba05ade8c4dd4d9, type: 3}
 --- !u!54 &205299588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -545,7 +547,7 @@ Transform:
   m_GameObject: {fileID: 1556341735}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -8.2, z: 10}
-  m_LocalScale: {x: 6.61, y: 4.74, z: 1}
+  m_LocalScale: {x: 14.84, y: 4.74, z: 1}
   m_Children: []
   m_Father: {fileID: 963194228}
   m_RootOrder: 0
@@ -578,6 +580,49 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1721573060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1721573062}
+  - component: {fileID: 1721573061}
+  m_Layer: 0
+  m_Name: SprinkleController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1721573061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721573060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad0b56ebc20ab047ae78b2c2126a1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1721573062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721573060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.4845622, y: -1.331135, z: -2.175126}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1812409850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -694,3 +739,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformPrefab: {fileID: 58239488632699572, guid: 01d5a7f72aeaaf443aa566ad9d25af31, type: 3}
   platformWithGoosePrefab: {fileID: 58239488632699572, guid: 4cb9010d3e7ccbb4aa6ab42225d7a2f7, type: 3}
+  sprinklePrefab: {fileID: 6523920838433506081, guid: 51cb72cc93efe1c469ff7334fa786daf, type: 3}

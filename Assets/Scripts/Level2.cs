@@ -19,14 +19,14 @@ public class Level2: Level {
         
         if (base.ShouldUpdateLevel()) {
             // For the first platform spawned in level 2, we want to spawn a goose on top
-            if (!firstGooseSpawned) {
+            if (!firstGooseSpawned || Random.Range(0.0f, 1.0f) < 0.2f) {
                 prefab = GameManager.Instance.prefabDataBase.platformWithGoosePrefab;
                 firstGooseSpawned = true;
             } else {
                 prefab = GameManager.Instance.prefabDataBase.platformPrefab;
             }
 
-            SpawnPlatform(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, prefab);
+            SpawnLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, prefab);
         } 
     }
 }

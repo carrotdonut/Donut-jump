@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Platform
   - Goose
+  - PlatformWithItem
+  - Sprinkle
   layers:
   - Default
   - TransparentFX

@@ -27,7 +27,7 @@ public abstract class Level {
 
     // add collider, and when the collider triggers, check if its a platform
     // collider.transform.gameobject - to get a reference to that game object
-    public void SpawnPlatform(float minPlatformY, float maxPlatformY, GameObject prefab) {
+    public void SpawnLevelItem(float minPlatformY, float maxPlatformY, GameObject prefab) {
         float newPlatformY = Random.Range(minPlatformY, maxPlatformY);
         float newPlatformX = Random.Range(-2.5f, 2.5f);
 

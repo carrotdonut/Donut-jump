@@ -14,7 +14,14 @@ public class CameraController : MonoBehaviour {
     void Start() {
     }
 
-    public void UpdateCameraPosition(float currentPlatformY) {
+    // Set the camera to the updated y position
+    // Used for when the donut falls down, and we set the camera downwards to see the donut fall
+    public void SetCameraPositionY(float y) {
+        transform.position = new Vector3(transform.position.x, y, transform.position.z);
+    }
+
+    // Smoothly move the camera position to the next platform position
+    public void UpdateCameraPositionSmooth(float currentPlatformY) {
         // We don't need to update the camera if we jump on the same platform as before
         if (currentPlatformY == previousJumpedPlatformY) return;
 
