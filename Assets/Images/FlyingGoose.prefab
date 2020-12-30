@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1860292352257155791}
   - component: {fileID: 4677060945908728422}
   - component: {fileID: 1963592104790129892}
+  - component: {fileID: 5958694972623074039}
   m_Layer: 0
   m_Name: FlyingGoose
   m_TagString: Goose
@@ -96,3 +97,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4841986, y: 2.12, z: 0.2}
   m_Center: {x: 0.016589064, y: 0, z: 0}
+--- !u!114 &5958694972623074039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5501643131476029410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a9307cb78cfb14f87e1d5768e3e159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
