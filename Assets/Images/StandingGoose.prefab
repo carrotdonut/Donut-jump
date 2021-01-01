@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7347105120597410736}
   - component: {fileID: 4387852015969718604}
   - component: {fileID: -5773452720314312435}
+  - component: {fileID: 8737048620172024084}
   m_Layer: 0
   m_Name: StandingGoose
   m_TagString: Goose
@@ -96,3 +97,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.264246, y: 4.450475, z: 0.2}
   m_Center: {x: -0.5978764, y: -1.1497629, z: 0}
+--- !u!114 &8737048620172024084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325149153949617990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3c98847725a274f99c4ed4d3df7a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

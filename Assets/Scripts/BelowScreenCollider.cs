@@ -14,9 +14,10 @@ public class BelowScreenCollider : MonoBehaviour {
         if (other.tag == "PlatformWithItem" || other.tag == "Platform") {
             Destroy(other.gameObject);
         } else if (other.tag  == "Player" && !playerDead) {
+            Debug.Log("Move camera down");
             // If the player falls through and dies, we want to move the camera downwards
-            Vector3 playerPosition =  GameManager.Instance.gameController.GetPlayerPosition();
-            GameManager.Instance.gameController.SetCameraPositionY(playerPosition.y - 6);
+            Vector3 playerPosition =  GameManager.Instance.gameController.player.GetPosition();
+            GameManager.Instance.gameController.mainCamera.SetCameraPositionY(playerPosition.y - 6);
             playerDead = true;
         }
     }

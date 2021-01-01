@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private float movementSpeed = 60f;
-    [SerializeField] private float gravity = 1000f;
+    [SerializeField] private float gravity = 500f;
     [SerializeField] private float jumpStrength = 13f;
     [SerializeField] private Sprite deadDonutSprite;
     private bool playerDead = false;
@@ -13,6 +13,18 @@ public class PlayerController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+    }
+
+    public Vector3 GetPosition() {
+        return transform.position;
+    }
+
+    public bool IsMovingDown() {
+        return movingDown;
+    }
+
+    public bool IsPlayerDead() {
+        return playerDead;
     }
 
     // Update is called once per frame
@@ -33,7 +45,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space) && !playerDead) {
             // Pressing space shoots out a sprinkle to kill geese
-            GameManager.Instance.gameController.ShootSprinkle();
+            GameManager.Instance.gameController.sprinkles.CreateSprinkle();
         }
     }
 
@@ -44,19 +56,13 @@ public class PlayerController : MonoBehaviour {
             // When we land on a platform, we want to jump upwards
             displacement.y = jumpStrength;
 
-            GameManager.Instance.gameController.UpdateCameraPositionSmooth(other.transform.position.y);
-        } else if (other.tag == "Goose" && movingDown && !playerDead) {
-            // You kill the goose when you jump on top of it
-            other.gameObject.SetActive(false);
-        } else if (other.tag == "Goose" && !movingDown) {
-            // You die if you hit a goose and you're jumping up
-            playerDead = true;
-            ChangeToDeadDonut();
-            Debug.Log("You ded");
+            GameManager.Instance.gameController.mainCamera.UpdateCameraPositionSmooth(other.transform.position.y);
         }
     }
 
     public void ChangeToDeadDonut() {
+        Debug.Log("You ded");
+        playerDead = true;
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = deadDonutSprite;
     }
