@@ -23,7 +23,7 @@ public class Level2: Level {
                 prefab = GameManager.Instance.prefabDataBase.platformWithGoosePrefab;
                 firstGooseSpawned = true;
             } else {
-                prefab = GameManager.Instance.prefabDataBase.platformPrefab;
+                prefab = this.GetRandomPlatformPrefab();
             }
 
             SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, prefab);

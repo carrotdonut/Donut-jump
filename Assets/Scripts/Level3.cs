@@ -31,7 +31,7 @@ public class Level3: Level {
             if (Random.Range(0.0f, 1.0f) < 0.4f) {
                 prefab = GameManager.Instance.prefabDataBase.platformWithGoosePrefab;
             } else {
-                prefab = GameManager.Instance.prefabDataBase.platformPrefab;
+                prefab = this.GetRandomPlatformPrefab();
             }
 
             SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, prefab);

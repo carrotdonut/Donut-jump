@@ -15,7 +15,7 @@ public class Level1: Level {
         // We only spawn platforms up to a certain Y distance above the player
         
         if (base.ShouldUpdateLevel()) {
-            GameObject platformPrefab = GameManager.Instance.prefabDataBase.platformPrefab;
+            GameObject platformPrefab = this.GetRandomPlatformPrefab();
             SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, platformPrefab);
         }
     }
