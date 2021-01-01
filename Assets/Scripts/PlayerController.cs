@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private float movementSpeed = 60f;
-<<<<<<< HEAD
-    [SerializeField] private float gravity = 500f;
-    [SerializeField] private float jumpStrength = 13f;
-=======
     [SerializeField] private float gravity = 1000f;
     [SerializeField] private float baseJumpStrength = 10f;
     public float BaseJumpStrength { get { return baseJumpStrength;} set { baseJumpStrength = value; } }
 
->>>>>>> 4df09565cbde3997f2b4c121a1e0546cbada1d59
     [SerializeField] private Sprite deadDonutSprite;
     private bool playerDead = false;
     private Vector3 displacement = Vector3.zero;
@@ -65,7 +60,7 @@ public class PlayerController : MonoBehaviour {
 
     public void DoJump(float jumpStrength, float cameraYOffset) {
         displacement.y = jumpStrength;
-        GameManager.Instance.gameController.UpdateCameraPositionSmooth(cameraYOffset);
+        GameManager.Instance.gameController.mainCamera.UpdateCameraPositionSmooth(cameraYOffset);
     }
 
     public bool CanHitPlatform() {
