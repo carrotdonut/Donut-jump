@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakingPlatform : Platform
-{
+public class BreakingPlatform : Platform {
     public SpriteRenderer platform1;
     public SpriteRenderer platform2;
     public BoxCollider boxCollider;

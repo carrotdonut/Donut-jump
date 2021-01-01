@@ -58,8 +58,7 @@ public class PlayerController : MonoBehaviour {
         spriteRenderer.sprite = deadDonutSprite;
     }
 
-    public void DoJump(float jumpStrength, float cameraYOffset)
-    {
+    public void DoJump(float jumpStrength, float cameraYOffset) {
         displacement.y = jumpStrength;
         GameManager.Instance.gameController.UpdateCameraPositionSmooth(cameraYOffset);
     }
