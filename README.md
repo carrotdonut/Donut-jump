@@ -5,3 +5,5 @@ Image Sources:
 Donut: https://www.clipartkey.com/view/wTTmTo_doughnut-clipart-face-kawaii-de-donuts/
 Flying Goose: https://www.subpng.com/png-qc7dgi/
 Standing Goose: https://www.youtube.com/watch?v=cvabjDoL5dY&ab_channel=HowtoDrawandPaint
+Cookie: https://www.pikpng.com/pngvi/TwRJwx_pin-bitten-chocolate-chip-cookies-clipart-cute-cartoon-chocolate-chip-cookies-png/
+
