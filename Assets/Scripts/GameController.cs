@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Per scene
 public class GameController : MonoBehaviour {
     public CameraController mainCamera;
     public PlayerController player;
     public SprinkleController sprinkles;
+    public Text scoreText;
 
     // Same as Start, except it is called before Start()
     void Awake() {
@@ -14,6 +16,7 @@ public class GameController : MonoBehaviour {
     }
 
     void Start() {
+        scoreText.text = "Score: " + 0;
     }
 
     public void UpdateCameraPositionSmooth(float currentPlatformY) {

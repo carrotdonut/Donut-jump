@@ -8,6 +8,7 @@ TagManager:
   - Goose
   - PlatformWithItem
   - Sprinkle
+  - SideScreenCollider
   layers:
   - Default
   - TransparentFX

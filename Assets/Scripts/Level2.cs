@@ -26,7 +26,7 @@ public class Level2: Level {
                 prefab = GameManager.Instance.prefabDataBase.platformPrefab;
             }
 
-            SpawnLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, prefab);
+            SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, prefab);
         } 
     }
 }

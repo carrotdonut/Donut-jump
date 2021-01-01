@@ -1,0 +1,19 @@
+- Score in the corner (top-right)
+- ending screen (to show score and cookies)
+- cookies
+- trampolines
+- using cookies to buy upgrades or skins ($$$)
+- rocket booster upgrade (sprinkle jet pack)
+- platforms that break on 1 jump
+- moving platforms
+- black hole that sucks u in (but doesn't actually kill)
+- shields
+- spring shoes
+- pocky sticks make you jump higher (they'll become the donut's legs)
+- continuous laser (superman power up, red lasers coming out of the eyes)
+
+
+- cookies
+- score UI in the corner
+- moving platforms and breaking platforms
+- background

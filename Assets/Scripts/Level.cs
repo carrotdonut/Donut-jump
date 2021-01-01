@@ -27,7 +27,7 @@ public abstract class Level {
 
     // add collider, and when the collider triggers, check if its a platform
     // collider.transform.gameobject - to get a reference to that game object
-    public void SpawnLevelItem(float minPlatformY, float maxPlatformY, GameObject prefab) {
+    public void SpawnPlatformLevelItem(float minPlatformY, float maxPlatformY, GameObject prefab) {
         float newPlatformY = Random.Range(minPlatformY, maxPlatformY);
         float newPlatformX = Random.Range(-2.5f, 2.5f);
 
@@ -36,6 +36,13 @@ public abstract class Level {
 
         GameObject.Instantiate<GameObject>(prefab, spawnPosition, spawnRotation);
         previousSpawnedPlatformY = newPlatformY;
+    }
+
+    public void SpawnLevelItem(float y, GameObject prefab) {
+        Vector3 spawnPosition = new Vector3(player.transform.position.x, y, 0);
+        Quaternion spawnRotation = Quaternion.identity; // Rotation (0,0,0)
+
+        GameObject.Instantiate<GameObject>(prefab, spawnPosition, spawnRotation);
     }
 
     protected bool ShouldUpdateLevel() {

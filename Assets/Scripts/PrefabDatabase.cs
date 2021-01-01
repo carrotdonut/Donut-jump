@@ -6,5 +6,6 @@ using UnityEngine;
 public class PrefabDatabase : MonoBehaviour {
     public GameObject platformPrefab;
     public GameObject platformWithGoosePrefab;
+    public GameObject flyingGoosePrefab;
     public GameObject sprinklePrefab;
 }

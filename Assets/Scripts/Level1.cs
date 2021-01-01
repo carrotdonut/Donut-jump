@@ -16,7 +16,7 @@ public class Level1: Level {
         
         if (base.ShouldUpdateLevel()) {
             GameObject platformPrefab = GameManager.Instance.prefabDataBase.platformPrefab;
-            SpawnLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, platformPrefab);
+            SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, platformPrefab);
         }
     }
 }

@@ -9,7 +9,7 @@ public class Sprinkle : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        // Keep shooting upwards, until the sprinkle's travelled its distance
+        // Keep shooting upwards, until the sprinkle's travelled its distance, then destroy the sprinkle
         if (distanceTravelled >= distanceToTravel) {
             Destroy(gameObject);
         } else {
@@ -20,7 +20,6 @@ public class Sprinkle : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         // If the sprinkle collides with a goose, we kill that goose!
-        // Also kill the sprinkle when it collides
         if (other.tag == "Goose") {
             other.gameObject.SetActive(false);
         }
