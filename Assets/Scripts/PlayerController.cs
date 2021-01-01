@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     [SerializeField] private float movementSpeed = 60f;
     [SerializeField] private float gravity = 1000f;
-    [SerializeField] private float jumpStrength = 13f;
+    [SerializeField] private float baseJumpStrength = 10f;
+    public float BaseJumpStrength { get { return baseJumpStrength;} set { baseJumpStrength = value; } }
+
     [SerializeField] private Sprite deadDonutSprite;
     private bool playerDead = false;
     private Vector3 displacement = Vector3.zero;
@@ -40,12 +42,7 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         // We want to check if we land on a platform and we're falling downwards
         // We want to go through platforms when moving upwards
-        if (other.tag == "Platform" && movingDown && !playerDead) {
-            // When we land on a platform, we want to jump upwards
-            displacement.y = jumpStrength;
-
-            GameManager.Instance.gameController.UpdateCameraPositionSmooth(other.transform.position.y);
-        } else if (other.tag == "Goose" && movingDown && !playerDead) {
+        if (other.tag == "Goose" && movingDown && !playerDead) {
             // You kill the goose when you jump on top of it
             other.gameObject.SetActive(false);
         } else if (other.tag == "Goose" && !movingDown) {
@@ -59,5 +56,14 @@ public class PlayerController : MonoBehaviour {
     public void ChangeToDeadDonut() {
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = deadDonutSprite;
+    }
+
+    public void DoJump(float jumpStrength, float cameraYOffset) {
+        displacement.y = jumpStrength;
+        GameManager.Instance.gameController.UpdateCameraPositionSmooth(cameraYOffset);
+    }
+
+    public bool CanHitPlatform() {
+        return movingDown && !playerDead;
     }
 }

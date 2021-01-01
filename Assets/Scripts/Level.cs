@@ -48,4 +48,11 @@ public abstract class Level {
     protected bool ShouldUpdateLevel() {
         return previousSpawnedPlatformY < (player.transform.position.y + maxDistanceAbovePlayer);
     }
+
+    protected GameObject GetRandomPlatformPrefab() {
+        List<GameObject> platforms = GameManager.Instance.prefabDataBase.GetPlatformPrefabs();
+        int count = platforms.Count;
+
+        return platforms[Random.Range(0, count)];
+    }
 }
