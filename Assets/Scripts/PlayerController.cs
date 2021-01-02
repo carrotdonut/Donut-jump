@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour {
     private Vector3 displacement = Vector3.zero;
     private bool movingDown = true;
 
+    private bool applyGravity = true;
+
+    private List<Powerup> activePowerups = new List<Powerup>();
+
     // Start is called before the first frame update
     void Start() {
     }
@@ -20,7 +24,11 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         // Add the gravity acceleration since we're always jumping in the air
-        displacement.y -= gravity * Time.deltaTime;
+
+        if (applyGravity) {
+            displacement.y -= gravity * Time.deltaTime;
+        }
+
         if (displacement.y >= 0) {
             movingDown = false;
         } else {
@@ -45,7 +53,7 @@ public class PlayerController : MonoBehaviour {
         if (other.tag == "Goose" && movingDown && !playerDead) {
             // You kill the goose when you jump on top of it
             other.gameObject.SetActive(false);
-        } else if (other.tag == "Goose" && !movingDown) {
+        } else if (other.tag == "Goose" && !movingDown && CanBeHit()) {
             // You die if you hit a goose and you're jumping up
             playerDead = true;
             ChangeToDeadDonut();
@@ -65,5 +73,33 @@ public class PlayerController : MonoBehaviour {
 
     public bool CanHitPlatform() {
         return movingDown && !playerDead;
+    }
+
+    public void SetApplyGravity(bool gravity) {
+        this.applyGravity = gravity;
+    }
+
+    public void SetDisplacement(Vector3 displace) {
+        this.displacement = displace;
+    }
+
+    public Vector3 GetDisplacement() {
+        return this.displacement;
+    }
+
+    public void AddActivePowerup(Powerup powerup) {
+        this.activePowerups.Add(powerup);
+    }
+    
+    public bool HasPowerupWithName(string powerUpName) {
+        return this.activePowerups.Find( (Powerup powerup) => powerup.powerupName == powerUpName ) != null;
+    }
+
+    public void RemovePowerup(Powerup powerup) {
+        this.activePowerups.Remove(powerup);
+    }
+
+    public bool CanBeHit() {
+        return !this.HasPowerupWithName("Jetpack");
     }
 }
