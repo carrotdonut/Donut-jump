@@ -21,6 +21,8 @@ public abstract class Level {
     */
    public abstract void UpdateLevel();
 
+   protected abstract GameObject GetPlatformPrefab();
+
    public float GetPreviousSpawnedPlatformY() {
        return previousSpawnedPlatformY;
    }
