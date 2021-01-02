@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JetpackPowerup : Powerup
-{
+public class JetpackPowerup : Powerup {
     public float jetpackSpeed = 10f;
 
     public float maxCamOffset = 5f;
 
-    public override void OnInitialize()
-    {
+    public override void OnInitialize() {
         base.OnInitialize();
         this.powerupName = "Jetpack";
         this.player.SetApplyGravity(false);
     }
 
-    public override void OnUpdate()
-    {
+    public override void OnUpdate() {
         base.OnUpdate();
         Vector3 displacement = this.player.GetDisplacement();
         displacement.y = jetpackSpeed;

@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JetpackItem : Item
-{
+public class JetpackItem : Item {
     public JetpackPowerup jetpackPowerup;
     public override void GetItem() {
         PlayerController player = GameManager.Instance.gameController.player;
