@@ -14,7 +14,7 @@ public class BelowScreenCollider : MonoBehaviour {
             Vector3 playerPosition =  GameManager.Instance.gameController.player.GetPosition();
             GameManager.Instance.gameController.mainCamera.SetCameraPositionY(playerPosition.y - 6);
             playerDead = true;
-        } else {
+        } else if (other.tag != "Player") {
             // Destroy all other platforms and items that go underneath the camera view
             Destroy(other.gameObject);
         }

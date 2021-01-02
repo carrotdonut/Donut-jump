@@ -9,7 +9,7 @@ public class Goose : Item {
         if (player.CanHitPlatform()) {
             // If the player is moving down, and isn't dead, then the player's jumping on top of the goose, and we kill the goose
             gameObject.SetActive(false);
-        } else if (!player.IsMovingDown()) {
+        } else if (!player.IsMovingDown() && player.CanBeHit()) {
             // If the player is moving up and hits a goose, the player DIES
             player.ChangeToDeadDonut();
         }

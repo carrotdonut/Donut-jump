@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour {
     // Used for when the donut falls down, and we set the camera downwards to see the donut fall
     public void SetCameraPositionY(float y) {
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
+        this.previousJumpedPlatformY = y;
     }
 
     // Smoothly move the camera position to the next platform position
