@@ -27,13 +27,9 @@ public class Level3: Level {
                 firstFlyingGooseSpawned = true;
             }
             
-            // Randomly spawn platforms with geese
-            if (Random.Range(0.0f, 1.0f) < 0.4f) {
-                prefab = GameManager.Instance.prefabDataBase.platformWithGoosePrefab;
-            } else {
-                prefab = this.GetRandomPlatformPrefab();
-            }
-
+            // We'll spawn 20% basic platforms, 20% cookie platforms, 40% geese platforms, and 20% breaking platforms in level 3
+            prefab = this.GetPlatformPrefabWithPercentages(new float[] {0.2f, 0.2f, 0.4f, 0.2f});
+            
             SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, prefab);
         } 
     }

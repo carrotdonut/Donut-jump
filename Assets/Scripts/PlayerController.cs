@@ -21,6 +21,18 @@ public class PlayerController : MonoBehaviour {
     void Start() {
     }
 
+    public Vector3 GetPosition() {
+        return transform.position;
+    }
+
+    public bool IsMovingDown() {
+        return movingDown;
+    }
+
+    public bool IsPlayerDead() {
+        return playerDead;
+    }
+
     // Update is called once per frame
     void Update() {
         // Add the gravity acceleration since we're always jumping in the air
@@ -43,32 +55,20 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space) && !playerDead) {
             // Pressing space shoots out a sprinkle to kill geese
-            GameManager.Instance.gameController.ShootSprinkle();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other) {
-        // We want to check if we land on a platform and we're falling downwards
-        // We want to go through platforms when moving upwards
-        if (other.tag == "Goose" && movingDown && !playerDead) {
-            // You kill the goose when you jump on top of it
-            other.gameObject.SetActive(false);
-        } else if (other.tag == "Goose" && !movingDown && CanBeHit()) {
-            // You die if you hit a goose and you're jumping up
-            playerDead = true;
-            ChangeToDeadDonut();
-            Debug.Log("You ded");
+            GameManager.Instance.gameController.sprinkles.CreateSprinkle();
         }
     }
 
     public void ChangeToDeadDonut() {
+        Debug.Log("You ded");
+        playerDead = true;
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = deadDonutSprite;
     }
 
     public void DoJump(float jumpStrength, float cameraYOffset) {
         displacement.y = jumpStrength;
-        GameManager.Instance.gameController.UpdateCameraPositionSmooth(cameraYOffset);
+        GameManager.Instance.gameController.mainCamera.UpdateCameraPositionSmooth(cameraYOffset);
     }
 
     public bool CanHitPlatform() {
@@ -100,6 +100,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     public bool CanBeHit() {
-        return !this.HasPowerupWithName("Jetpack");
+        return this.playerDead == false && !this.HasPowerupWithName("Jetpack");
     }
 }

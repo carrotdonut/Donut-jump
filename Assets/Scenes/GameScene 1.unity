@@ -1262,6 +1262,7 @@ MonoBehaviour:
   platformPrefab: {fileID: 58239488632699572, guid: 01d5a7f72aeaaf443aa566ad9d25af31, type: 3}
   brokenPlatformPrefab: {fileID: 58239488632699572, guid: de462ca27713dc045ba3033e2a77eaa9, type: 3}
   platformWithGoosePrefab: {fileID: 58239488632699572, guid: 4cb9010d3e7ccbb4aa6ab42225d7a2f7, type: 3}
+  platformWithCookiePrefab: {fileID: 58239488632699572, guid: d8070409174fc8342826fbf55b2334e4, type: 3}
   flyingGoosePrefab: {fileID: 5501643131476029410, guid: 2b9160e949d50cb4ca91bc3e1c92fa1e, type: 3}
   sprinklePrefab: {fileID: 6523920838433506081, guid: 51cb72cc93efe1c469ff7334fa786daf, type: 3}
 --- !u!1001 &4111739645706754158

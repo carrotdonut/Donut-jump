@@ -12,21 +12,20 @@ public class Level2: Level {
    }
 
     public override void UpdateLevel() {
-        // Every time the player jumps on a platform and moves upwards, we spawn new platforms
-        // We only spawn platforms up to a certain Y distance above the player
-
-        GameObject prefab = null;
-        
+        // We'll spawn 25% basic platforms, 25% cookie platforms, 30% geese platforms, and 20% breaking platforms in level 2
         if (base.ShouldUpdateLevel()) {
+            GameObject platformPrefab = null;
+
             // For the first platform spawned in level 2, we want to spawn a goose on top
-            if (!firstGooseSpawned || Random.Range(0.0f, 1.0f) < 0.2f) {
-                prefab = GameManager.Instance.prefabDataBase.platformWithGoosePrefab;
+            if (!firstGooseSpawned) {
+                platformPrefab = GameManager.Instance.prefabDataBase.platformWithGoosePrefab;
                 firstGooseSpawned = true;
             } else {
-                prefab = this.GetRandomPlatformPrefab();
+                // We'll spawn 25% basic platforms, 25% cookie platforms, 30% geese platforms, and 20% breaking platforms in level 2
+                platformPrefab = this.GetPlatformPrefabWithPercentages(new float[] {0.25f, 0.25f, 0.3f, 0.2f});
             }
 
-            SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, prefab);
-        } 
+            SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, platformPrefab);
+        }
     }
 }

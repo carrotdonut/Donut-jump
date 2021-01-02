@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour {
     public SprinkleController sprinkles;
     public Text scoreText;
 
+    private int cookieCounter;
+
     // Same as Start, except it is called before Start()
     void Awake() {
         GameManager.Instance.gameController = this;
@@ -17,26 +19,10 @@ public class GameController : MonoBehaviour {
 
     void Start() {
         scoreText.text = "Score: " + 0;
+        cookieCounter = 0;
     }
-
-    public void UpdateCameraPositionSmooth(float currentPlatformY) {
-        mainCamera.UpdateCameraPositionSmooth(currentPlatformY);
-    }
-
-    public void SetCameraPositionY(float y) {
-        mainCamera.SetCameraPositionY(y);
-    }
-
-    public Vector3 GetPlayerPosition() {
-        return player.transform.position;
-    }
-
-    public void ChangePlayerToDeadDonut() {
-        player.ChangeToDeadDonut();
-    }
-
-    public void ShootSprinkle() {
-        sprinkles.CreateSprinkle();
+    public void IncrementCookieCounter() {
+        cookieCounter++;
     }
 
 }

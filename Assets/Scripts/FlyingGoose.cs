@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingGoose : MonoBehaviour {
+public class FlyingGoose : Goose {
     private sbyte direction = -1; // Initialize the geese to fly left
     private float movementSpeed = 10f;
 
@@ -12,8 +12,12 @@ public class FlyingGoose : MonoBehaviour {
         transform.Translate(Vector3.right * direction * movementSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log("Goose crashed into collider");
+    public override void GetItem() {
+        base.GetItem();
+    }
+
+    protected override void OnTriggerEnter(Collider other) {
+        base.OnTriggerEnter(other);
         if (other.tag == "SideScreenCollider") {
             // When we bump into a side collider, the flying goose switches directions
             direction *= -1;

@@ -11,7 +11,7 @@ public class SprinkleController : MonoBehaviour {
         GameObject sprinklePrefab = GameManager.Instance.prefabDataBase.sprinklePrefab;
         sprinklePrefab.GetComponent<SpriteRenderer>().color = colors[colorIndex]; // Set the color of the sprinkle
 
-        Vector3 playerPosition = GameManager.Instance.gameController.GetPlayerPosition();
+        Vector3 playerPosition = GameManager.Instance.gameController.player.GetPosition();
         playerPosition.y = playerPosition.y + 1; // Put the sprinkle right above the donut
 
         Instantiate(sprinklePrefab, playerPosition, Quaternion.identity);
