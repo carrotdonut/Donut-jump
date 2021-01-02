@@ -11,17 +11,10 @@ public class Level1: Level {
    }
 
     public override void UpdateLevel() {
-        // Every time the player jumps on a platform and moves upwards, we spawn new platforms
-        // We only spawn platforms up to a certain Y distance above the player
-        
+        // We'll spawn 50% basic platforms and 50% cookie platforms in level 1
         if (base.ShouldUpdateLevel()) {
-            GameObject platformPrefab = this.GetPlatformPrefab();
+            GameObject platformPrefab = this.GetPlatformPrefabWithPercentages(new float[] {0.5f, 0.5f});
             SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, platformPrefab);
         }
-    }
-
-    protected override GameObject GetPlatformPrefab(){
-        // In Level 1, we only have regular platforms
-       return GameManager.Instance.prefabDataBase.platformPrefab;
     }
 }

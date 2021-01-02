@@ -12,34 +12,20 @@ public class Level2: Level {
    }
 
     public override void UpdateLevel() {
-        // Every time the player jumps on a platform and moves upwards, we spawn new platforms
-        // We only spawn platforms up to a certain Y distance above the player
-        
+        // We'll spawn 25% basic platforms, 25% cookie platforms, 30% geese platforms, and 20% breaking platforms in level 2
         if (base.ShouldUpdateLevel()) {
-            GameObject prefab = this.GetPlatformPrefab();
-            SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, prefab);
-        } 
-    }
+            GameObject platformPrefab = null;
 
-    protected override GameObject GetPlatformPrefab(){
-        GameObject prefab = null;
-
-        // For the first platform spawned in level 2, we want to spawn a goose on top
-        if (!firstGooseSpawned || Random.Range(0.0f, 1.0f) < 0.2f) {
-            prefab = GameManager.Instance.prefabDataBase.platformWithGoosePrefab;
-            firstGooseSpawned = true;
-        } else {
-            // Else, we'll spawn 50% normal platforms, 30% geese platforms, and 20% breaking platforms
-            float rand = Random.Range(0.0f, 1.0f);
-            if (rand < 0.5) {
-                prefab = GameManager.Instance.prefabDataBase.platformPrefab;
-            } else if (0.5 <= rand && rand < 0.8) {
-                prefab = GameManager.Instance.prefabDataBase.platformWithGoosePrefab;
+            // For the first platform spawned in level 2, we want to spawn a goose on top
+            if (!firstGooseSpawned) {
+                platformPrefab = GameManager.Instance.prefabDataBase.platformWithGoosePrefab;
+                firstGooseSpawned = true;
             } else {
-                prefab = GameManager.Instance.prefabDataBase.brokenPlatformPrefab;
+                // We'll spawn 25% basic platforms, 25% cookie platforms, 30% geese platforms, and 20% breaking platforms in level 2
+                platformPrefab = this.GetPlatformPrefabWithPercentages(new float[] {0.25f, 0.25f, 0.3f, 0.2f});
             }
-        }
 
-        return prefab;
+            SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, platformPrefab);
+        }
     }
 }

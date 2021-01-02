@@ -21,8 +21,6 @@ public abstract class Level {
     */
    public abstract void UpdateLevel();
 
-   protected abstract GameObject GetPlatformPrefab();
-
    public float GetPreviousSpawnedPlatformY() {
        return previousSpawnedPlatformY;
    }
@@ -56,5 +54,27 @@ public abstract class Level {
         int count = platforms.Count;
 
         return platforms[Random.Range(0, count)];
+    }
+
+    /*
+    The percentages parameter is a list of floats for the spawn rate of the platforms in this order:
+    - basic platform
+    - platform with cookie
+    - platform with goose
+    - broken platform
+    */
+    protected GameObject GetPlatformPrefabWithPercentages(float[] percentages) {
+        float rand = Random.Range(0.0f, 1.0f);
+        List<GameObject> platformPrefabs = GameManager.Instance.prefabDataBase.GetPlatformPrefabs();
+        float percentagesSum = 0;
+
+        for (int i=0; i < percentages.Length; i++) {
+            percentagesSum += percentages[i];
+            if (rand <= percentagesSum) {
+                return platformPrefabs[i];
+            }
+        }
+
+        return platformPrefabs[platformPrefabs.Count - 1];
     }
 }
