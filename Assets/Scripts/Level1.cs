@@ -7,13 +7,19 @@ public class Level1: Level {
    base(player, previousSpawnedPlatformY) {
        minDistanceBetweenPlatform = 1.2f;
        maxDistanceBetweenPlatform = 3f;
+
+       // We'll spawn 40% basic platforms, 40% cookie platforms, and 20% broken platforms in level 1
+       normalPlatformRate = 0.4f;
+       cookiePlatformRate = 0.4f;
+       goosePlatformRate = 0.0f;
+       brokenPlatformRate = 0.2f;
+       jetpackPlatformRate = 0f;
        Debug.Log("Level 1");
    }
 
     public override void UpdateLevel() {
-        // We'll spawn 50% basic platforms and 50% cookie platforms in level 1
         if (base.ShouldUpdateLevel()) {
-            GameObject platformPrefab = this.GetPlatformPrefabWithPercentages(new float[] {0.5f, 0.5f});
+            GameObject platformPrefab = this.GetPlatformPrefabWithSpawnRate();
             SpawnPlatformLevelItem(minDistanceBetweenPlatform + previousSpawnedPlatformY, maxDistanceBetweenPlatform + previousSpawnedPlatformY, platformPrefab);
         }
     }

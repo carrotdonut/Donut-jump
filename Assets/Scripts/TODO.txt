@@ -3,7 +3,7 @@
 - cookies
 - trampolines
 - using cookies to buy upgrades or skins ($$$)
-- rocket booster upgrade (sprinkle jet pack)
+- jetpack booster upgrade (sprinkle jet pack)
 - platforms that break on 1 jump
 - moving platforms
 - black hole that sucks u in (but doesn't actually kill)

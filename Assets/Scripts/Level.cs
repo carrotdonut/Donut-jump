@@ -10,6 +10,13 @@ public abstract class Level {
 
     protected const float maxDistanceAbovePlayer = 6;
 
+    // Spawn rates for the different types of platforms:
+    protected float normalPlatformRate;
+    protected float cookiePlatformRate;
+    protected float goosePlatformRate;
+    protected float brokenPlatformRate;
+    protected float jetpackPlatformRate;
+
    public Level(PlayerController player, float previousSpawnedPlatformY) {
        this.player = player;
        this.previousSpawnedPlatformY = previousSpawnedPlatformY;
@@ -56,21 +63,15 @@ public abstract class Level {
         return platforms[Random.Range(0, count)];
     }
 
-    /*
-    The percentages parameter is a list of floats for the spawn rate of the platforms in this order:
-    - basic platform
-    - platform with cookie
-    - platform with goose
-    - broken platform
-    */
-    protected GameObject GetPlatformPrefabWithPercentages(float[] percentages) {
+    protected GameObject GetPlatformPrefabWithSpawnRate() {
         float rand = Random.Range(0.0f, 1.0f);
+        float[] spawnRates = {normalPlatformRate, cookiePlatformRate, goosePlatformRate, brokenPlatformRate, jetpackPlatformRate};
         List<GameObject> platformPrefabs = GameManager.Instance.prefabDataBase.GetPlatformPrefabs();
-        float percentagesSum = 0;
+        float spawnRatesSum = 0;
 
-        for (int i=0; i < percentages.Length; i++) {
-            percentagesSum += percentages[i];
-            if (rand <= percentagesSum) {
+        for (int i=0; i < spawnRates.Length; i++) {
+            spawnRatesSum += spawnRates[i];
+            if (rand <= spawnRatesSum) {
                 return platformPrefabs[i];
             }
         }

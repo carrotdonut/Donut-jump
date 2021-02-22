@@ -8,11 +8,17 @@ public class PrefabDatabase : MonoBehaviour {
     public GameObject brokenPlatformPrefab;
     public GameObject platformWithGoosePrefab;
     public GameObject platformWithCookiePrefab;
+    public GameObject platformWithJetpackPrefab;
     public GameObject flyingGoosePrefab;
     public GameObject sprinklePrefab;
-
-
+    
     public List<GameObject> GetPlatformPrefabs() {
-        return new List<GameObject>{platformPrefab, platformWithCookiePrefab, platformWithGoosePrefab, brokenPlatformPrefab};
+        return new List<GameObject>{
+            platformPrefab,
+            platformWithCookiePrefab,
+            platformWithGoosePrefab,
+            brokenPlatformPrefab,
+            platformWithJetpackPrefab,
+        };
     }
 }

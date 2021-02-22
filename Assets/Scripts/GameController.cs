@@ -9,7 +9,8 @@ public class GameController : MonoBehaviour {
     public PlayerController player;
     public SprinkleController sprinkles;
     public Text scoreText;
-
+    public Text cookieScoreText;
+    private float score;
     private int cookieCounter;
 
     // Same as Start, except it is called before Start()
@@ -19,10 +20,19 @@ public class GameController : MonoBehaviour {
 
     void Start() {
         scoreText.text = "Score: " + 0;
+        cookieScoreText.text = "" + 0;
+        score = 0;
         cookieCounter = 0;
     }
+
     public void IncrementCookieCounter() {
         cookieCounter++;
+        cookieScoreText.text = "" + cookieCounter;
+    }
+
+    public void IncreaseScore(float score) {
+        this.score += score;
+        scoreText.text = "Score: " + Mathf.RoundToInt(this.score);
     }
 
 }

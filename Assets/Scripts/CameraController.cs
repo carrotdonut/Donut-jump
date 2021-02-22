@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour {
     private float moveDuration = 0.5f;
     private float timeElapsed = 0.5f;
     private bool isMovingCamera = false;
-    private float previousJumpedPlatformY = -4; // Y coordinate of the starting platform
+    private float previousJumpedPlatformY = 1; // Y coordinate of the starting platform
 
     // Start is called before the first frame update
     void Start() {
@@ -18,7 +18,10 @@ public class CameraController : MonoBehaviour {
     // Used for when the donut falls down, and we set the camera downwards to see the donut fall
     public void SetCameraPositionY(float y) {
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
-        this.previousJumpedPlatformY = y;
+    }
+
+    public void SetPreviousJumpedPlatformY(float y) {
+        previousJumpedPlatformY = y;
     }
 
     // Smoothly move the camera position to the next platform position
@@ -27,6 +30,8 @@ public class CameraController : MonoBehaviour {
         if (currentPlatformY == previousJumpedPlatformY) return;
 
         float displacement = currentPlatformY - previousJumpedPlatformY;
+        Debug.Log("current platform " + currentPlatformY);
+        Debug.Log("prev jumped platform " + previousJumpedPlatformY);
         previousJumpedPlatformY = currentPlatformY;
 
         if (!isMovingCamera) {

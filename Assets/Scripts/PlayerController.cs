@@ -1,19 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private float movementSpeed = 60f;
     [SerializeField] private float gravity = 1000f;
     [SerializeField] private float baseJumpStrength = 10f;
+    private float highestPlatformJumped = 0f;
+
+    public float HighestPlatformJumped { get { return highestPlatformJumped;} set { highestPlatformJumped = value; } }
     public float BaseJumpStrength { get { return baseJumpStrength;} set { baseJumpStrength = value; } }
 
     [SerializeField] private Sprite deadDonutSprite;
     private bool playerDead = false;
     private Vector3 displacement = Vector3.zero;
-    private bool movingDown = true;
+    private bool movingDown;
 
     private bool applyGravity = true;
+
+    // Right after using a powerup like the jetpack, make the player invincible for 2 secs, so they have time to
+    // regain their composure in the game
+    // It's sad bee if they just finish a jetpack and crash into a goose
+    private DateTime invincibleTime;
 
     private List<Powerup> activePowerups = new List<Powerup>();
 
@@ -97,9 +106,17 @@ public class PlayerController : MonoBehaviour {
 
     public void RemovePowerup(Powerup powerup) {
         this.activePowerups.Remove(powerup);
+        invincibleTime = DateTime.Now.AddSeconds(2);
+
+        // Kinda hacky, simulate the previous platform to be 5 under the player
+        GameManager.Instance.gameController.mainCamera.SetPreviousJumpedPlatformY(GetPosition().y - 5);
     }
 
     public bool CanBeHit() {
+        if (DateTime.Now <= invincibleTime) {
+            return false;
+        }
+
         return this.playerDead == false && !this.HasPowerupWithName("Jetpack");
     }
 }
